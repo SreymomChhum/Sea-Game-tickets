@@ -11,6 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("event_id");
@@ -25,13 +33,5 @@ return new class extends Migration
             ->onDelete('cascade');
             $table->timestamps();
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        //
     }
 };

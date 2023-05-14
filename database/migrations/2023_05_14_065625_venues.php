@@ -11,18 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('teams', function (Blueprint $table) {
+        Schema::create('venues', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->unsignedBigInteger("country_is");
-            $table->unsignedBigInteger("marth_id");
-            $table->foreign("country_is")
+            $table->string('location');
+            $table->unsignedBigInteger("event_id");
+            $table->foreign("event_id")
             ->references("id")
-            ->on("countrys")
-            ->onDelete('cascade');
-            $table->foreign("marth_id")
-            ->references("id")
-            ->on("marths")
+            ->on("events")
             ->onDelete('cascade');
             $table->timestamps();
         });
