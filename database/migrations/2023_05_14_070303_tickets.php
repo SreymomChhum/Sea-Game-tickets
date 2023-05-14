@@ -11,18 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-    }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("event_id");
             $table->unsignedBigInteger("marth_id");
+            $table->unsignedBigInteger("zone_id");
             $table->foreign("event_id")
             ->references("id")
             ->on("events")
@@ -31,7 +24,19 @@ return new class extends Migration
             ->references("id")
             ->on("marths")
             ->onDelete('cascade');
+            $table->foreign("zone_id")
+            ->references("id")
+            ->on("zones")
+            ->onDelete('cascade');
             $table->timestamps();
         });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        
     }
 };
