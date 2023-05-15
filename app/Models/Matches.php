@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Marth extends Model
+class Matches extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -13,4 +13,12 @@ class Marth extends Model
         'date_time',
         'event_id',
     ];
+    public function Event()
+    {
+        return $this->belongsTo((Event::class));
+    }
+    public function Team()
+    {
+        return $this->hasMany(Team::class);
+    }
 }

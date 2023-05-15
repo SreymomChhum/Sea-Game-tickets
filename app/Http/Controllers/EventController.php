@@ -15,10 +15,10 @@ class EventController extends Controller
     public function index()
     {
         $event = Event::all();
-        if(count($event)==0){
-            return response()->json(['message'=>"request Successfully"],200); 
+        if (count($event) == 0) {
+            return response()->json(['message' => "request Successfully"], 200);
         }
-        return response()->json(['message'=>"request Successfully", 'data'=>$event],200);
+        return response()->json(['message' => "request Successfully", 'data' => $event], 200);
     }
 
     /**
@@ -35,14 +35,15 @@ class EventController extends Controller
     public function store(Request $request)
     {
         //
-        $validator =Validator::make($request->all(),[
-            'name_sport'=>'required|max:150',
+        $validator = Validator::make($request->all(), [
+            'name_sport' => 'required|max:150',
+            'venue_id'=>'required'
         ]);
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return $validator->errors();
         }
         $event = Event::create($validator->validated());
-        return response()->json(['message'=>"Create Successfully", 'data'=>$event],200);
+        return response()->json(['message' => "Create Successfully", 'data' => $event], 200);
     }
 
     /**
@@ -51,7 +52,7 @@ class EventController extends Controller
     public function show(string $id)
     {
         $event = Event::find($id);
-        return response()->json(['message'=>"show by id Successfully", 'data'=>$event],200);
+        return response()->json(['message' => "show by id Successfully", 'data' => $event], 200);
     }
 
     /**
@@ -68,17 +69,19 @@ class EventController extends Controller
     public function update(Request $request, string $id)
     {
         $event = Event::find($id);
-        $validator =Validator::make($request->all(),[
-            'name_sport'=>'required|max:150',
+        $validator = Validator::make($request->all(), [
+            'name_sport' => 'required|max:150',
+            'venue_id' => 'required'
         ]);
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return $validator->errors();
-        }else{
+        } else {
             $event->update([
-                'name_sport'=>request('name_sport'),
+                'name_sport' => request('name_sport'),
+                'venue_id' => request('venue_id')
             ]);
         }
-        return response()->json(["message"=>"show event by user id = ".$id." was update", 'data'=>$event],200);
+        return response()->json(["message" => "show event by user id = " . $id . " was update", 'data' => $event], 200);
     }
 
     /**
@@ -88,8 +91,6 @@ class EventController extends Controller
     {
         $event = Event::find($id);
         $event->delete();
-        return response()->json(['message' =>"deleted successfully"],201);
-
-
+        return response()->json(['message' => "deleted successfully"], 201);
     }
 }

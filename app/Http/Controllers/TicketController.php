@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,7 +14,13 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        $ticket = Ticket::all();
+        if(count($ticket)==0){
+            return response()->json(['message'=>"request success"]);
+        }else{
+            return response()->json(['message'=>"request successfully",'data'=>$ticket], 200);
+
+        }
     }
 
     /**
@@ -29,7 +36,12 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ticket = Ticket::create([
+            'event_id' => request('event_id'),
+            'match_id' => request('match_id'),
+            'zone_id' => request('zone_id'),
+        ]);
+        return response()->json(['success'=>'create success', 'data'=>$ticket],201);
     }
 
     /**
@@ -37,7 +49,8 @@ class TicketController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $ticket = Ticket::find($id);
+        return response()->json(['message'=>"request by id successfully",'data'=>$ticket],201);
     }
 
     /**
@@ -53,7 +66,12 @@ class TicketController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $ticket = Ticket::updated([
+            'event_id' => request('event_id'),
+            'match_id' => request('match_id'),
+            'zone_id' => request('zone_id'),
+        ]);
+        return response()->json(['message'=>'request update successful','data'=>$ticket],200);
     }
 
     /**
@@ -61,6 +79,8 @@ class TicketController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $ticket = Ticket::find($id);
+        $ticket->delete();
+        return response()->json(['message'=>"request delete succesfully"],200);
     }
 }

@@ -14,15 +14,10 @@ return new class extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger("country_id");
-            $table->unsignedBigInteger("marth_id");
-            $table->foreign("country_id")
+            $table->unsignedBigInteger("match_id");
+            $table->foreign("match_id")
             ->references("id")
-            ->on("countries")
-            ->onDelete('cascade');
-            $table->foreign("marth_id")
-            ->references("id")
-            ->on("marths")
+            ->on("matches")
             ->onDelete('cascade');
             $table->timestamps();
         });

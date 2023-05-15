@@ -10,6 +10,11 @@ class Team extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        "country_id"
+        "match_id"
     ];
+
+    public function Marth()
+    {
+        return $this->belongsTo(Marth::class);
+    }
 }

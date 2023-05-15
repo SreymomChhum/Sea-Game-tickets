@@ -11,9 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create('matches', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('description');
+            $table->string('date_time');
+            $table->unsignedBigInteger("event_id");
+            $table->foreign("event_id")
+            ->references("id")
+            ->on("events")
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }
