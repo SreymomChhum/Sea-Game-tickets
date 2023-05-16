@@ -6,6 +6,7 @@ use App\Http\Controllers\MatchController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\ZoneController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\team_MatchingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +33,11 @@ Route::resource('matches',MatchController::class);
 Route::resource('teams',TeamController::class);
 Route::resource('zones',ZoneController::class);
 Route::resource('tickets',TicketController::class);
+Route::resource('marching',team_MatchingController::class);
+
+Route::get('getInfoZone',[ZoneController::class,'getInfoZone']);
+Route::get('getTicket',[TicketController::class,'getTicket']);
+Route::get('searchForEvent/{name_sport}',[EventController::class,'search']);
+Route::get('getTicketDetail/{id}',[TicketController::class,'getTicketDetail']);
+
 

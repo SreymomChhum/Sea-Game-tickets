@@ -15,11 +15,15 @@ class Event extends Model
         'name_sport',
         "venue_id"
     ];
-    public function venue()
+    public function Venue()
     {
         return $this->belongsTo((Venue::class));
     }
-    public function marth(){
-        return $this->hasMany((Marth::class));
+    public function Team_Matching(){
+        return $this->hasMany((Team_matching::class));
+    }
+    public function Ticket()
+    {
+        return $this->hasMany(Ticket::class);
     }
 }

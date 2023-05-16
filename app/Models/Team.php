@@ -13,8 +13,8 @@ class Team extends Model
         "match_id"
     ];
 
-    public function Marth()
+    public function Team_matching()
     {
-        return $this->belongsTo(Marth::class);
+        return $this->belongsTo(Team_matching::class);
     }
 }

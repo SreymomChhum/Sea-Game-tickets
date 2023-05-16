@@ -15,11 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('description');
             $table->string('date_time');
-            $table->unsignedBigInteger("event_id");
-            $table->foreign("event_id")
-            ->references("id")
-            ->on("events")
-            ->onDelete('cascade');
+           
             $table->timestamps();
         });
     }

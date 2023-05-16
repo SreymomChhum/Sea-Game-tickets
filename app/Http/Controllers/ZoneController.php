@@ -97,4 +97,12 @@ class ZoneController extends Controller
         $zone->delete();
         return response()->json(['message'=>'delete success']);
     }
+    // public function getInfoZone(){
+    //     $venues = Zone::join('venues', 'zones.id', '=', 'venues.id')->select('venues.location')->get();
+    //     return $venues;
+    // }
+    public function getInfoZone(){
+        $venues = Zone::with('venues')->get();
+        return $venues;
+    }
 }

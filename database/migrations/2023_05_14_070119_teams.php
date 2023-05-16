@@ -14,11 +14,6 @@ return new class extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger("match_id");
-            $table->foreign("match_id")
-            ->references("id")
-            ->on("matches")
-            ->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -35,7 +35,7 @@ class MatchController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'description'=>'required|min:50',
+            'description'=>'required|min:20',
             'date_time'=>'required',
             // 'event_id'=>'required',
         ]);
@@ -45,7 +45,6 @@ class MatchController extends Controller
             $match = Matches::create([
                 'description' => request('description'),
                 'date_time' => request('date_time'),
-                'event_id' => request('event_id'),
             ]);
         }
         return response()->json(['message' => "Create Successfully",'data' => $match], 200);
@@ -78,7 +77,6 @@ class MatchController extends Controller
         $validator = Validator::make($request->all(), [
             'description' => 'required|max:150',
             'date_time' => 'required',
-            'event_id' => 'required',
         ]);
         if ($validator->fails()) {
             return $validator->errors();
@@ -86,7 +84,6 @@ class MatchController extends Controller
             $match->update([
                 'description' => request('description'),
                 'date_time' => request('date_time'),
-                'event_id' => request('event_id'),
             ]);
         }
         return response()->json(["message" => "show marth by user id = " . $id . " was update", 'data' => $match], 200);

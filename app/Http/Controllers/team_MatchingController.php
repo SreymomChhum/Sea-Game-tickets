@@ -2,24 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Team;
+use App\Models\Event;
+use App\Models\Team_matching;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
-
-class TeamController extends Controller
+class team_MatchingController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $teams = Team::all();
-        if (count($teams)==0){
-            return response()->json(['message'=>'request successfully but no data']);
-        }else{
-            return response()->json(['message'=>'request successfully','data'=>$teams]);
-        }
+        //
+        $matching = Team_matching::all();
+        return response()->json(['message'=>"success",'data'=>$matching],200);
     }
 
     /**
@@ -27,7 +23,7 @@ class TeamController extends Controller
      */
     public function create()
     {
-        // 
+        //
     }
 
     /**
@@ -35,18 +31,7 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name'=>'required',
-        ]);
-        if($validator->fails()){
-            return $validator -> errors();
-        }else{
-            $match = Team::create([
-                'name' => request('name'),
-            ]);
-        }
-        return response()->json(['message' => "Create Successfully",'data' => $match], 200);
-
+        //
     }
 
     /**
@@ -80,4 +65,10 @@ class TeamController extends Controller
     {
         //
     }
+    // public function getEventDetail($id)
+    // {
+    //     $eventsDetail = team_matching::join('matches', 'matches.id', '=', 'team_matching.id')->where('matches.event_id', $id)->get();
+    //     return $eventsDetail;
+    // }
+
 }

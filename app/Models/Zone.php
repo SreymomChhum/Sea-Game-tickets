@@ -12,4 +12,11 @@ class Zone extends Model
         'name',
         "venue_id"
     ];
+    public function Venue(){
+        return $this->belongsTo((Venue::class));
+    }
+    public function Ticket(){
+        return $this->hasMany(Ticket::class);
+    }
+
 }

@@ -10,7 +10,19 @@ class Ticket extends Model
     use HasFactory;
     protected $fillable = [
         'event_id',
-        'match_id',
+        'team_match_id',
         'zone_id',
     ];
+    public function Event()
+    {
+        return $this->belongsTo(Event::class);
+    }
+    public function Team_Matching()
+    {
+        return $this->belongsTo(Team_matching::class);
+    }
+    public function Zone()
+    {
+        return $this->belongsTo(Zone::class);
+    }
 }

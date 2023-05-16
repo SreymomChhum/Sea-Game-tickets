@@ -13,7 +13,10 @@ class Venue extends Model
         'location',
     ];
 
-    public function event():HasMany{
-        return $this->hasMany((Event::class));
+    public function event(){
+        return $this->hasMany(Event::class);
+    }
+    public function zone(){
+        return $this->hasMany(Zone::class);
     }
 }

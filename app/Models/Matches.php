@@ -17,8 +17,9 @@ class Matches extends Model
     {
         return $this->belongsTo((Event::class));
     }
-    public function Team()
+    public function Team_matching()
     {
-        return $this->hasMany(Team::class);
+        return $this->belongsTo(Team_matching::class);
     }
+
 }

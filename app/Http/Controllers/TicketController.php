@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use App\Http\Resources\ShowTicketResource;
 
 class TicketController extends Controller
 {
@@ -38,7 +38,7 @@ class TicketController extends Controller
     {
         $ticket = Ticket::create([
             'event_id' => request('event_id'),
-            'match_id' => request('match_id'),
+            'team_match_id' => request('team_match_id'),
             'zone_id' => request('zone_id'),
         ]);
         return response()->json(['success'=>'create success', 'data'=>$ticket],201);
@@ -68,7 +68,7 @@ class TicketController extends Controller
     {
         $ticket = Ticket::updated([
             'event_id' => request('event_id'),
-            'match_id' => request('match_id'),
+            'team_match_id' => request('team_match_id'),
             'zone_id' => request('zone_id'),
         ]);
         return response()->json(['message'=>'request update successful','data'=>$ticket],200);
@@ -83,4 +83,12 @@ class TicketController extends Controller
         $ticket->delete();
         return response()->json(['message'=>"request delete succesfully"],200);
     }
+
+    public function getTicketDetail($id){
+
+        $ticket = Ticket::find($id);
+        $ticket = new ShowTicketResource($ticket);
+        return response()->json(['message'=>'Get ticket detail success', 'data'=>$ticket],200);
+    }
+    
 }

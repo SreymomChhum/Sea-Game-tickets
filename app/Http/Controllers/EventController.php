@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Event;
+use Illuminate\Support\Facades\DB;
+
 
 
 class EventController extends Controller
@@ -93,4 +95,19 @@ class EventController extends Controller
         $event->delete();
         return response()->json(['message' => "deleted successfully"], 201);
     }
+
+    // public function search(){
+    //     $event = Event::all();
+    //     $event = Event::where('name_sport','like','%'.request('name_sport').'%')->get();
+    //     return $event;
+    // } 
+    public function search( $name){
+        $event = Event::where('name_sport','like','%'.$name.'%')->get();
+        return $event;
+    }
+
+
+
 }
+
+
